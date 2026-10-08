@@ -1,0 +1,16 @@
+{
+  "name": "sanqian-youpin-backend",
+  "version": "12.0.0",
+  "private": true,
+  "description": "三千优品（邻居好物）共享后端：平台免费、线下现场成交、无在线支付",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=19"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.1"
+  }
+}

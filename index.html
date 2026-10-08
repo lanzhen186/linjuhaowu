@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>邻居好物 - 周边三公里的儿童好物集市</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+  <!-- 用户端视图容器 -->
+  <main id="main" class="main"></main>
+
+  <!-- 底部导航（用户端） -->
+  <nav id="tabbar" class="tabbar" hidden>
+    <a href="#/home" data-tab="home" class="tab-item">
+      <span class="tab-ico">&#x1F3E0;</span><span class="tab-label">首页</span>
+    </a>
+    <a href="#/search" data-tab="search" class="tab-item">
+      <span class="tab-ico">&#x1F50D;</span><span class="tab-label">搜索</span>
+    </a>
+    <a href="#/publish" data-tab="publish" class="tab-item tab-publish">
+      <span class="tab-ico">&#x2795;</span><span class="tab-label">发布</span>
+    </a>
+    <a href="#/messages" data-tab="messages" class="tab-item">
+      <span class="tab-ico">&#x1F4AC;</span><span id="msg-badge" class="tab-badge" hidden>0</span><span class="tab-label">消息</span>
+    </a>
+    <a href="#/profile" data-tab="profile" class="tab-item">
+      <span class="tab-ico">&#x1F464;</span><span class="tab-label">我的</span>
+    </a>
+  </nav>
+
+  <!-- 弹窗容器 -->
+  <div id="modal-root"></div>
+  <!-- Toast 容器 -->
+  <div id="toast-root"></div>
+</div>
+
+<script>
+// 云端 API 地址（本地开发默认 localhost:8000；部署时改为线上后端地址，如 https://xxx.render.com）
+window.SQYP_API_BASE = window.SQYP_API_BASE || 'http://localhost:8000';
+</script>
+<script src="js/geo.js?v=11"></script>
+<script src="js/data.js?v=11"></script>
+<script src="js/app.js?v=11"></script>
+<script src="js/admin.js?v=11"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  SQYP_APP.init();
+});
+</script>
+</body>
+</html>

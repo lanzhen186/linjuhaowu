@@ -1,0 +1,37 @@
+# ============================================================
+# 三千优品（邻居好物）共享后端 - Render Blueprint 一键部署配置
+# ------------------------------------------------------------
+# 用法（有 GitHub 仓库时最省事）：
+#   1. 把整个「三千优品」项目目录推送到 GitHub 仓库
+#   2. 在 Render Dashboard 选 New -> Blueprint -> 选择该仓库
+#   3. 部署后到 Service -> Environment 填写 POSTGRES_URL
+#      （Neon 免费数据库连接串，见 部署指引.md）
+#   4. 保存后 Render 会自动重新部署，服务即带云数据持久化
+# ------------------------------------------------------------
+# 说明：
+#   - rootDir 留空（仓库根），因为 backend/lib/seed.js 依赖
+#     仓库根的 js/geo.js，必须保留完整项目结构。
+#   - 免费实例 15 分钟无访问会休眠，首次请求需等待唤醒；
+#     数据保存在 Neon 云端，重启/休眠不丢。
+#   - 若没有 GitHub 仓库，也可直接 New Web Service 手动配置：
+#     Root Directory 选 backend（需把 js/ 复制进去）或整仓。
+# ============================================================
+services:
+  - type: web
+    name: sanqian-youpin-backend
+    runtime: node
+    plan: free
+    rootDir: .
+    buildCommand: npm install --prefix backend
+    startCommand: node backend/server.js
+    autoDeploy: true
+    healthCheckPath: /api/bootstrap
+    envVars:
+      - key: PORT
+        value: 10000
+      # Neon 免费数据库连接串，部署后在 Render Dashboard 填写：
+      # postgresql://user:password@ep-xxx.region.aws.neon.tech/dbname
+      - key: POSTGRES_URL
+        sync: false
+      - key: NODE_VERSION
+        value: 22.x
